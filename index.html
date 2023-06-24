@@ -18,6 +18,25 @@
       margin-left: 10px;
     }
   </style>
+  
+  <script>
+    function searchAnime() {
+      var input = document.getElementById('search-input');
+      var searchTerm = input.value.toLowerCase();
+      
+      var animeLinks = document.getElementsByClassName('anime-link');
+      for (var i = 0; i < animeLinks.length; i++) {
+        var animeLink = animeLinks[i];
+        var animeTitle = animeLink.innerText.toLowerCase();
+        
+        if (animeTitle.includes(searchTerm)) {
+          animeLink.style.display = 'block';
+        } else {
+          animeLink.style.display = 'none';
+        }
+      }
+    }
+  </script>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -59,7 +78,7 @@
 
   <!-- Search Box -->
   <div class="container mt-4">
-    <form class="d-flex">
+    <form class="d-flex" onsubmit="event.preventDefault(); searchAnime();">
       <input class="form-control me-2" type="search" placeholder="Search Animes" aria-label="Search" id="search-input">
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
