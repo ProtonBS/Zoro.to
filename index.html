@@ -25,16 +25,29 @@
       var searchTerm = input.value.toLowerCase();
       
       var animeLinks = document.getElementsByClassName('anime-link');
+      var noResultsWarning = document.getElementById('no-results-warning');
+      var addButton = document.getElementById('add-button');
+      var hasResults = false;
+      
       for (var i = 0; i < animeLinks.length; i++) {
         var animeLink = animeLinks[i];
         var animeTitle = animeLink.innerText.toLowerCase();
         
         if (animeTitle.includes(searchTerm)) {
           animeLink.style.display = 'block';
+          hasResults = true;
         } else {
           animeLink.style.display = 'none';
         }
       }
+      
+      if (hasResults) {
+        noResultsWarning.style.display = 'none';
+      } else {
+        noResultsWarning.style.display = 'block';
+      }
+      
+      input.value = '';
     }
   </script>
 </head>
@@ -82,44 +95,38 @@
       <input class="form-control me-2" type="search" placeholder="Search Animes" aria-label="Search" id="search-input">
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
-  </div><div class="container mt-4">
+  </div>
+  <div class="container mt-4">
     <h2 id="latest" class="text-center">Latest Anime Releases</h2>
     <div class="list-group"><br>
+      <div id="no-results-warning" style="display: none;">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          No results found. Please try a different search term.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      </div>
       
-      
-       <!------------- 𝙒𝙊𝙍𝙆 𝘼𝙍𝙀𝘼 -------------->
-      
-
-      <!-- 
-      
-      <a href="##############" class="list-group-item list-group-item-action anime-link">
-        NNNNNNNAAAAMMMMMMEEEEE
-        <button class="btn btn-primary watch-btn float-end">Watch</button>
+      <!-- Add the button for user requests -->
+      <a href="https://example.com/anime-request" class="list-group-item list-group-item-action">
+        No results found? Add your request here!
+        <button class="btn btn-primary watch-btn float-end" id="add-button">Add Request</button>
       </a>
-      
-      -->
-      
       
       <a href="https://example.com/anime1" class="list-group-item list-group-item-action anime-link">
         Anime 1
         <button class="btn btn-primary watch-btn float-end">Watch</button>
       </a>
       
-      
-      
       <a href="https://example.com/anime2" class="list-group-item list-group-item-action anime-link">
        Anime 2
         <button class="btn btn-primary watch-btn float-end">Watch</button>
       </a>
-      
-      
       
       <a href="https://example.com/anime3" class="list-group-item list-group-item-action anime-link">
         Anime 3
         <button class="btn btn-primary watch-btn float-end">Watch</button>
       </a>
   
-      
     </div>
   </div>
 
